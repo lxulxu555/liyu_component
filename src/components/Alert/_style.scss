@@ -1,0 +1,38 @@
+.alert {
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  margin-bottom: $alert-margin-bottom;
+  border: 1px solid $black;
+  border-radius: $alert-border-radius;
+  & .bold-title {
+    font-weight: $font-weight-bold;
+  }
+  & &-desc {
+    font-size: $font-size-sm;
+    margin: 0.3rem 0 0;
+  }
+  & &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: $alert-padding-y $alert-padding-x;
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+.alert-success {
+  @include button-style($success, $success, $white, $success, $success);
+}
+
+.alert-default {
+  @include button-style($primary, $primary, $white, $primary, $primary);
+}
+
+.alert-danger {
+  @include button-style($danger, $danger, $white, $danger, $danger);
+}
+
+.alert-warning {
+  @include button-style($warning, $warning, $white, $warning, $warning);
+}
