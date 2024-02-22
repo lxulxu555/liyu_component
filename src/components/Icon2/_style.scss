@@ -1,0 +1,20 @@
+@mixin loading-animation {
+    @keyframes loading {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes loading {
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.icon-loading {
+    display: inline-block;
+    animation: loading 1s linear infinite;
+    @include loading-animation;
+}
