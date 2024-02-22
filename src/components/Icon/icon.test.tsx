@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import { Icon2, type Icon2Props } from './icon2';
+import { Icon, type IconProps } from './icon';
 
-const testProps: Icon2Props = {
+const testProps: IconProps = {
   name: 'fish',
   size: 24,
   color: 'red',
@@ -13,8 +13,8 @@ const testProps: Icon2Props = {
   spin: true,
 };
 
-describe('test Icon2 component', () => {
+describe('test Icon component', () => {
   it('should render the correct component based on different props', () => {
-    render(<Icon2 {...testProps} />);
+    render(<Icon {...testProps} />);
   });
 });

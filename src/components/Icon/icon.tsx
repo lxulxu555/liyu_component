@@ -1,23 +1,33 @@
-import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
+import { lazy, Suspense } from 'react';
+import { LucideProps } from 'lucide-react';
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
 import classNames from 'classnames';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-library.add(fas);
 
-export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark';
+const fallback = <div style={{ background: '#ddd', width: 24, height: 24 }} />;
 
-export interface IconProps extends FontAwesomeIconProps {
-  theme?: ThemeProps;
+export interface IconProps extends Omit<LucideProps, 'ref'> {
+  /** 图标集 https://lucide.dev/icons/ */
+  name: keyof typeof dynamicIconImports;
+  size?: string | number;
+  color?: string;
+  width?: string | number;
+  height?: string | number;
+  strokeWidth?: number | string;
+  absoluteStrokeWidth?: boolean;
+  fill?: string | undefined;
+  spin?: boolean;
 }
 
-const Icon: React.FC<IconProps> = (props) => {
-  const { className, theme, ...resetProps } = props;
+export const Icon = ({ name, spin = false, className, ...props }: IconProps) => {
+  const LucideIcon = lazy(dynamicIconImports[name]);
 
-  const classes = classNames('icon', className, {
-    [`icon-${theme}`]: theme,
+  const classes = classNames(className, {
+    'icon-loading': spin,
   });
 
-  return <FontAwesomeIcon className={classes} {...resetProps} />;
+  return (
+    <Suspense fallback={fallback}>
+      <LucideIcon {...props} className={classes} />
+    </Suspense>
+  );
 };
-
-export default Icon;

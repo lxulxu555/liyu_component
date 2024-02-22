@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { v4 as uuidv4 } from 'uuid';
-import Icon from '../Icon/icon';
 import { IMessage, MessageItem, MessageQueueItem } from './type';
+import { Icon } from '../Icon/icon';
 
 const MESSAGE_QUEUE: Array<MessageQueueItem> = [];
 let containerRoot: any;
@@ -69,13 +69,13 @@ const BaseMessage = ({ message, type = 'info', id }: MessageQueueItem) => {
   const renderIcon = () => {
     switch (type) {
       case 'info':
-        return <Icon icon="info-circle" />;
+        return <Icon name="badge-info" size={20} />;
       case 'warning':
-        return <Icon icon="exclamation-circle" />;
+        return <Icon name="badge-alert" size={20} />;
       case 'error':
-        return <Icon icon="times-circle" />;
+        return <Icon name="badge-x" size={20} />;
       case 'success':
-        return <Icon icon="check-circle" />;
+        return <Icon name="badge-check" size={20} />;
       default:
         return null;
     }
