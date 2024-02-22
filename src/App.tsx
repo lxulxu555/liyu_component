@@ -1,12 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from './components/Icon/icon';
 import Menu from './components/Menu/menu';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import Icon from './components/Icon/icon';
 
 function App() {
   return (
     <div className="App">
-      <Icon icon="coffee" theme="danger" size="10x" />
+      <Icon name="coffee" size={10} />
       <Menu defaultIndex={'0'} onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
         <Menu.Item>active</Menu.Item>
         <Menu.Item disabled>disabled</Menu.Item>
