@@ -1,25 +1,9 @@
 import classNames from 'classnames';
-import closeIcon from '../../assets/close.svg';
 import { useState } from 'react';
+import { AlertProps } from './type';
+import Icon from '../Icon/icon';
 
-export enum AlertType {
-  Success = 'success',
-  Default = 'default',
-  Danger = 'danger',
-  Warning = 'warning',
-}
-
-export interface AlertProps {
-  title: string;
-  description?: string;
-  type?: AlertType;
-  onClose?: () => void;
-  closable?: boolean;
-  className?: string;
-}
-
-const Alert: React.FC<AlertProps> = (props) => {
-  const { className, type, title, description, closable, onClose } = props;
+export const Alert = ({ className, type = 'default', title, description, closable = false, onClose }: AlertProps) => {
   const [showAlert, setShowAlert] = useState(true);
   const classes = classNames('alert', className, {
     [`alert-${type}`]: type,
@@ -27,29 +11,28 @@ const Alert: React.FC<AlertProps> = (props) => {
 
   const handleClose = () => {
     setShowAlert(false);
-    onClose && onClose();
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (
     <>
       {showAlert && (
         <div className={classes}>
-          <span className={classNames('alert-title', description && 'bold-title')}>{title}</span>
-          <p className="alert-desc">{description}</p>
-          {closable && (
-            <span className="alert-close" onClick={handleClose}>
-              <img src={closeIcon} alt="close" />
+          <div className='alert-content'>
+            <span
+              className={classNames('alert-title', {
+                bold: description,
+              })}
+            >
+              {title}
             </span>
-          )}
+            {description && <div className="alert-desc">{description}</div>}
+          </div>
+          {closable && <Icon className="alert-close" icon="close" onClick={handleClose} />}
         </div>
       )}
     </>
   );
 };
-
-Alert.defaultProps = {
-  type: AlertType.Default,
-  closable: false,
-};
-
-export default Alert;

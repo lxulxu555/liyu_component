@@ -1,22 +1,27 @@
 .alert {
-  position: relative;
+  display: flex;
+  align-items: flex-start;
   padding: $alert-padding-y $alert-padding-x;
-  margin-bottom: $alert-margin-bottom;
   border: 1px solid $black;
   border-radius: $alert-border-radius;
-  & .bold-title {
+  word-wrap: break-word;
+
+  & &-content {
+    min-width: 0px;
+    flex: 1;
+  }
+
+  & &-title.bold {
     font-weight: $font-weight-bold;
   }
+
   & &-desc {
     font-size: $font-size-sm;
     margin: 0.3rem 0 0;
   }
+
   & &-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: $alert-padding-y $alert-padding-x;
-    color: inherit;
+    margin: $alert-close-margin;
     cursor: pointer;
   }
 }
