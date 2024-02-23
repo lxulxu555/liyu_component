@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { AlertProps } from './type';
-import Icon from '../Icon/icon';
+import { Icon } from '../Icon/icon';
 
 export const Alert = ({ className, type = 'default', title, description, closable = false, onClose }: AlertProps) => {
   const [showAlert, setShowAlert] = useState(true);
@@ -20,7 +20,7 @@ export const Alert = ({ className, type = 'default', title, description, closabl
     <>
       {showAlert && (
         <div className={classes}>
-          <div className='alert-content'>
+          <div className="alert-content">
             <span
               className={classNames('alert-title', {
                 bold: description,
@@ -30,7 +30,8 @@ export const Alert = ({ className, type = 'default', title, description, closabl
             </span>
             {description && <div className="alert-desc">{description}</div>}
           </div>
-          {closable && <Icon className="alert-close" icon="close" onClick={handleClose} />}
+
+          {closable && <Icon className="alert-close" name="x" onClick={handleClose} />}
         </div>
       )}
     </>
