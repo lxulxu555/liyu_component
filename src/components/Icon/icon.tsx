@@ -5,9 +5,11 @@ import classNames from 'classnames';
 
 const fallback = <div style={{ background: '#ddd', width: 24, height: 24 }} />;
 
+export type IconName = keyof typeof dynamicIconImports;
+
 export interface IconProps extends Omit<LucideProps, 'ref'> {
   /** 图标集 https://lucide.dev/icons/ */
-  name: keyof typeof dynamicIconImports;
+  name: IconName;
   size?: string | number;
   color?: string;
   width?: string | number;

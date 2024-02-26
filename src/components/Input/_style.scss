@@ -1,0 +1,53 @@
+.input-wrapper {
+  position: relative;
+  display: inline-flex;
+  border: $input-border-width solid $input-border-color;
+  @include input-size($input-padding-x, $input-padding-y, $input-font-size, $input-border-radius);
+  transition: $input-transition;
+  background: $input-bg;
+  box-shadow: $input-box-shadow;
+  align-items: center;
+  column-gap: 0.25rem;
+  &.input-group {
+    padding: 0px;
+  }
+  .input-prepend {
+    border-color: $input-group-addon-border-color;
+    background: $input-group-addon-bg;
+    color: $input-group-addon-color;
+    padding: $input-padding-y $input-padding-x;
+  }
+  input {
+    padding: 0;
+    font-weight: $input-font-weight;
+    color: $input-color;
+    outline: none;
+    border: none;
+    background: transparent;
+    &:placeholder {
+      color: $input-placeholder-color;
+    }
+    &:disabled {
+      color: $input-disabled-color;
+      cursor: not-allowed;
+    }
+  }
+  &.input-focus {
+    outline: none;
+    border: $input-border-width solid $input-focus-border-color;
+  }
+  &.input-lg {
+    @include input-size($input-padding-x-lg, $input-padding-y-lg, $input-font-size-lg, $input-border-radius-lg);
+  }
+  &.input-sm {
+    @include input-size($input-padding-x-sm, $input-padding-y-sm, $input-font-size-sm, $input-border-radius-sm);
+  }
+  &:hover {
+    border-color: $primary;
+  }
+  &.input-disabled {
+    background: $input-disabled-bg;
+    border-color: $input-border-color;
+    cursor: not-allowed;
+  }
+}
