@@ -14,6 +14,7 @@ function App() {
           <Menu.Item>drop2</Menu.Item>
           <Menu.Item>drop3</Menu.Item>
           <Menu.Item>drop3</Menu.Item>
+          <Menu.Item>drop3</Menu.Item>
         </Menu.SubMenu>
       </Menu>
     </div>
