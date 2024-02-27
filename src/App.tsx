@@ -12,8 +12,6 @@ function App() {
         <Menu.SubMenu title="title">
           <Menu.Item>drop1</Menu.Item>
           <Menu.Item>drop2</Menu.Item>
-          <Menu.Item>drop3</Menu.Item>
-          <Menu.Item>drop3</Menu.Item>
         </Menu.SubMenu>
       </Menu>
     </div>
