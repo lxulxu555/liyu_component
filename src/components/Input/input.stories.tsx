@@ -6,7 +6,14 @@ const meta: Meta<typeof Input> = {
   component: Input,
   argTypes: {
     prepend: {
-      options: ['Normal', 'Bold', 'Italic'],
+      options: ['Bold', 'Italic'],
+      mapping: {
+        Bold: <b>Bold</b>,
+        Italic: <i>Italic</i>,
+      },
+    },
+    append: {
+      options: ['Bold', 'Italic'],
       mapping: {
         Bold: <b>Bold</b>,
         Italic: <i>Italic</i>,
