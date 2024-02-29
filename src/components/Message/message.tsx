@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { v4 as uuidv4 } from 'uuid';
+import { nanoid } from 'nanoid';
 import { IMessage, MessageItem, MessageQueueItem } from './type';
 import { Icon } from '../Icon/icon';
 
@@ -9,7 +9,7 @@ const MESSAGE_QUEUE: Array<MessageQueueItem> = [];
 let containerRoot: any;
 
 function addMessage(params: MessageItem) {
-  const id = uuidv4();
+  const id = nanoid();
   MESSAGE_QUEUE.push({ ...params, id });
   renderMessage([...MESSAGE_QUEUE]);
 }
