@@ -1,0 +1,36 @@
+.upload-list {
+  list-style: none;
+  margin: 4px 0;
+  padding: 0;
+  &.hidden {
+    display: none;
+  }
+  & &-item {
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    &:hover {
+      background: #f7f7f7;
+      .upload-list-item-close {
+        opacity: 1;
+      }
+    }
+    &.success {
+      color: $primary;
+    }
+    &.error {
+      color: $danger;
+    }
+    &-close {
+      cursor: pointer;
+      opacity: 0;
+    }
+    &-title {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
