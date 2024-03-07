@@ -30,7 +30,7 @@ export const Dragger = ({ onFile }: DraggerProps) => {
         handleDrag(e, true);
       }}
       onDragLeave={(e) => {
-        if (Array.from(draggerRef.current?.children || []).includes(e.relatedTarget as Element)) {
+        if (e.relatedTarget === draggerRef.current || Array.from(draggerRef.current?.children || []).includes(e.relatedTarget as Element)) {
           return;
         }
         handleDrag(e, false);

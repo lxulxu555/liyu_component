@@ -1,5 +1,6 @@
 .progress {
-  width: 300px;
+  width: 100%;
+  min-width: 200px;
   &-bar {
     background-color: #f5f5f5;
     border-radius: 5px;
