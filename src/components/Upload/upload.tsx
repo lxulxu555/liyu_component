@@ -4,8 +4,25 @@ import { UploadFile, UploadProps } from './type';
 import axios from 'axios';
 import { UploadList } from './uploadList';
 import { v4 as uuidv4 } from 'uuid';
+import { Dragger } from './dragger';
 
-export const Upload = ({ action, onError, onProgress, onSuccess, beforeUpload, onChange, defaultFileList, onRemove }: UploadProps) => {
+export const Upload = ({
+  action,
+  onError,
+  onProgress,
+  onSuccess,
+  beforeUpload,
+  onChange,
+  defaultFileList,
+  onRemove,
+  header,
+  name,
+  withCredentials,
+  data,
+  accept,
+  multiple,
+  drag,
+}: UploadProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
 
@@ -74,14 +91,23 @@ export const Upload = ({ action, onError, onProgress, onSuccess, beforeUpload, o
       percent: 0,
       raw: file,
     };
-    setFileList([_file, ...fileList]);
+    setFileList((prevList) => {
+      return [_file, ...prevList];
+    });
     const formData = new FormData();
-    formData.append(file.name, file);
+    formData.append(name || 'file', file);
+    if (data) {
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
+    }
     axios
       .post(action, formData, {
         headers: {
+          ...header,
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials,
         onUploadProgress: (e) => {
           let percentage = Math.round((e.loaded * 100) / (e?.total ?? 0)) || 0;
           if (percentage < 100) {
@@ -112,11 +138,16 @@ export const Upload = ({ action, onError, onProgress, onSuccess, beforeUpload, o
   };
 
   return (
-    <div>
-      <Button btnType="primary" onClick={handleClick}>
-        Upload File
-      </Button>
-      <input type="file" ref={fileInput} style={{ display: 'none' }} onChange={handleFileChange} />
+    <div className="upload">
+      {drag ? (
+        <Dragger onFile={(files) => uploadFiles(files)} />
+      ) : (
+        <Button btnType="primary" onClick={handleClick}>
+          Upload File
+        </Button>
+      )}
+
+      <input type="file" ref={fileInput} style={{ display: 'none' }} onChange={handleFileChange} accept={accept} multiple={multiple} />
       <UploadList fileList={fileList} onRemove={handleRemove} />
     </div>
   );

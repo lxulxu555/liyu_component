@@ -1,45 +1,69 @@
-.upload-list {
-  list-style: none;
-  margin: 4px 0;
-  padding: 0;
-  &.hidden {
-    display: none;
-  }
-  & &-item {
-    position: relative;
-    padding: 1px;
+.upload {
+  .dragger {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    column-gap: 4px;
-    &:hover {
-      background: #f7f7f7;
-      .upload-list-item-close {
-        opacity: 1;
-      }
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    border: 2px dashed #d9d9d9;
+    border-radius: 4px;
+    background: #fafafa;
+    transition: border-color 0.3s;
+    cursor: pointer;
+    &.is-dragover {
+      border-color: $primary;
     }
-    &.success {
-      color: $primary;
+    &-text {
+      margin-top: 8px;
+      font-size: 14px;
+      color: $gray-500;
     }
-    &.error {
-      color: $danger;
-    }
-    &-close {
-      cursor: pointer;
-      opacity: 0;
-    }
-    &-title {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    &.visible {
-      opacity: 0;
-      animation: visible 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 forwards;
-    }
+  }
+  .upload-list {
+    list-style: none;
+    margin: 4px 0;
+    padding: 0;
     &.hidden {
-      opacity: 1;
-      animation: hidden 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 forwards;
+      display: none;
+    }
+    & &-item {
+      position: relative;
+      padding: 1px;
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+      &:hover {
+        background: #f7f7f7;
+        .upload-list-item-close {
+          opacity: 1;
+        }
+      }
+      &.success {
+        color: $primary;
+      }
+      &.error {
+        color: $danger;
+      }
+      &-close {
+        cursor: pointer;
+        opacity: 0;
+      }
+      &-title {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &.visible {
+        opacity: 0;
+        animation: visible 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 forwards;
+      }
+      &.hidden {
+        opacity: 1;
+        animation: hidden 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 forwards;
+      }
     }
   }
 }
