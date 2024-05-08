@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { Children, cloneElement, createContext, useState } from 'react';
-import MenuItem, { MenuItemProps } from './menuItem';
-import SubMenu, { SubMenuProps } from './subMenu';
+import { MenuItemProps } from './menuItem';
 
 type SelectCallback = (selectedIndex: string) => void;
 type MenuMode = 'horizontal' | 'vertical';
@@ -24,11 +23,7 @@ interface IMenuContext {
 }
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' });
-const Menu: React.FC<MenuProps> & {
-  Item: React.FC<MenuItemProps>;
-} & {
-  SubMenu: React.FC<SubMenuProps>;
-} = (props) => {
+const Menu: React.FC<MenuProps> = (props) => {
   const { className, mode, style, defaultIndex, children, onSelect, defaultOpenSubMenus } = props;
 
   const [currentActive, setActive] = useState(defaultIndex);
@@ -74,8 +69,5 @@ Menu.defaultProps = {
   mode: 'horizontal',
   defaultOpenSubMenus: [],
 };
-
-Menu.Item = MenuItem;
-Menu.SubMenu = SubMenu;
 
 export default Menu;

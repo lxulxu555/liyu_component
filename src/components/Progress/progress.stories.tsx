@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { Progress } from './progress';
 
 const meta: Meta<typeof Progress> = {
